@@ -2,10 +2,10 @@ import React from 'react'
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
-const Card = ({ title, discountRate, coverImage, price }) => {
+const Card = ({ title, discountRate, coverImage, price, description }) => {
     const navigation = useNavigation()
     const onPress = () => {
-        navigation.navigate('BookDetailScreen', { title, discountRate, coverImage, price })
+        navigation.navigate('BookDetailScreen', { title, discountRate, coverImage, price, description })
     }
     return (
         <TouchableOpacity style={styles.container} onPress={onPress}>

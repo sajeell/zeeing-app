@@ -9,6 +9,7 @@ const BOOKS = [
         discountRate: 20,
         coverImage: 'https://dummyimage.com/187/000/919191',
         price: 9.99,
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     },
     {
         id: '2',
@@ -16,6 +17,7 @@ const BOOKS = [
         discountRate: 15,
         coverImage: 'https://dummyimage.com/187/000/919191',
         price: 12.99,
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     },
     {
         id: '3',
@@ -23,6 +25,7 @@ const BOOKS = [
         discountRate: 10,
         coverImage: 'https://dummyimage.com/187/000/919191',
         price: 7.99,
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     },
 ]
 
@@ -31,7 +34,13 @@ const BookListScreen = () => {
     const [refreshing, setRefreshing] = useState(false)
 
     const renderBookCard = ({ item }) => (
-        <Card title={item.title} discountRate={item.discountRate} coverImage={item.coverImage} price={item.price} />
+        <Card
+            title={item.title}
+            discountRate={item.discountRate}
+            coverImage={item.coverImage}
+            price={item.price}
+            description={item.description}
+        />
     )
     const handleRefresh = () => {
         setRefreshing(true)
