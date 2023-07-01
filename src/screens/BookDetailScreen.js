@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
+import CommentComponent from '../components/Comment'
 
 export default function BookDetailScreen({ route, navigation }) {
     const { title, discountRate, coverImage, price, description } = route.params
@@ -21,6 +22,7 @@ export default function BookDetailScreen({ route, navigation }) {
                     <Text style={styles.price}>Price: {price} 원</Text>
                 </View>
             </View>
+            <CommentComponent />
         </View>
     )
 }

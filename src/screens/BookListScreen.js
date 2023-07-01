@@ -46,12 +46,16 @@ const BookListScreen = () => {
     const handleRefresh = () => {
         setRefreshing(true)
 
-        setBooks(BOOKS)
+        fetchBooks().then(data => {
+            setBooks(data)
+        })
         setRefreshing(false)
     }
     const handleLoadMore = () => {
         setTimeout(() => {
-            setBooks([...books, ...BOOKS])
+            fetchBooks().then(data => {
+                setBooks(data)
+            })
         }, 2000)
     }
 
