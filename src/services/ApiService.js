@@ -10,14 +10,4 @@ async function fetchBooks() {
     }
 }
 
-async function fetchBookDetail(id) {
-    try {
-        const response = await fetch(`${BOOK_DETAIL_ENDPOINT}/${id}`)
-        const data = await response.json()
-        return data
-    } catch (error) {
-        console.error(error)
-    }
-}
-
-export { fetchBooks, fetchBookDetail }
+export default fetchBooks

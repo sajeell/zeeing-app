@@ -1,12 +1,21 @@
-import React from 'react'
+import { useNavigation } from '@react-navigation/native'
+import React, { useEffect } from 'react'
+import { Text, View } from 'react-native'
 
 export default function BookDetailScreen({ route, navigation }) {
-    const { book } = route.params
+    const { title, discountRate, coverImage, price } = route.params
+    useEffect(() => {
+        navigation.setOptions({
+            headerTitle: () => <Text>{title}</Text>,
+            headerBackTitleVisible: false,
+        })
+    }, [])
+
     return (
         <View>
-            <Text>{book.title}</Text>
-            <Text>{book.author}</Text>
-            <Text>{book.description}</Text>
+            <Text>Title</Text>
+            <Text>Author</Text>
+            <Text>Description</Text>
         </View>
     )
 }
