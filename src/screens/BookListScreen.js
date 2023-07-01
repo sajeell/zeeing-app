@@ -1,5 +1,5 @@
-import React from 'react'
-import { View, FlatList, Dimensions, StyleSheet } from 'react-native'
+import React, { useState } from 'react'
+import { FlatList, RefreshControl, StyleSheet, View } from 'react-native'
 import Card from '../components/Card'
 
 const BOOKS = [
@@ -27,18 +27,35 @@ const BOOKS = [
 ]
 
 const BookListScreen = () => {
+    const [books, setBooks] = useState(BOOKS)
+    const [refreshing, setRefreshing] = useState(false)
+
     const renderBookCard = ({ item }) => (
         <Card title={item.title} discountRate={item.discountRate} coverImage={item.coverImage} price={item.price} />
     )
+    const handleRefresh = () => {
+        setRefreshing(true)
+
+        setBooks(BOOKS)
+        setRefreshing(false)
+    }
+    const handleLoadMore = () => {
+        setTimeout(() => {
+            setBooks([...books, ...BOOKS])
+        }, 2000)
+    }
 
     return (
         <View style={styles.container}>
             <FlatList
-                data={BOOKS}
+                data={books}
                 renderItem={renderBookCard}
-                keyExtractor={item => item.id}
+                keyExtractor={() => Math.random()}
                 numColumns={2}
                 contentContainerStyle={styles.contentContainer}
+                onEndReachedThreshold={0.8}
+                onEndReached={handleLoadMore}
+                refreshControl={<RefreshControl refreshing={refreshing} onRefresh={handleRefresh} />}
             />
         </View>
     )
