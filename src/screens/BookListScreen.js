@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FlatList, RefreshControl, StyleSheet, View } from 'react-native'
 import Card from '../components/Card'
+import fetchBooks from '../services/ApiService'
 
 const BOOKS = [
     {
@@ -53,6 +54,12 @@ const BookListScreen = () => {
             setBooks([...books, ...BOOKS])
         }, 2000)
     }
+
+    useEffect(() => {
+        fetchBooks().then(data => {
+            setBooks(data)
+        })
+    }, [])
 
     return (
         <View style={styles.container}>
